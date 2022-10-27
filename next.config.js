@@ -7,6 +7,8 @@ const nextConfig = {
       "links.papareact.com",
       "platform-lookaside.fbbx.com",
       "firebasestorage.googleapis.com",
+      "scontent.fwaw3-1.fna.fbcdn.net",
+      "platform-lookaside.fbsbx.com",
     ],
   },
 };
