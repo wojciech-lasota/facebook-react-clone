@@ -6,12 +6,12 @@ function SidebarRow({ Icon, title, src }) {
     <div className="flex items-center space-x-2 p-4 hover:bg-gray-200 rounded-xl cursor-pointer">
       {src && (
         <Image
-          alt="avatar"
           className="rounded-full"
           src={src}
           width={30}
           height={30}
           layout="fixed"
+          alt="avatar"
         />
       )}
       {Icon && <Icon className="h-8 w-8 text-blue-500" />}
