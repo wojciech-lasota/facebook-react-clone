@@ -8,7 +8,7 @@ import {
   VideoCameraIcon,
 } from "@heroicons/react/solid";
 import firebase from "firebase";
-import { db } from "../firebase";
+import { db, storage } from "../firebase";
 
 function InputBox() {
   const { data: session, status } = useSession();
@@ -20,13 +20,48 @@ function InputBox() {
     e.preventDefault();
     if (!inputRef.current.value) return;
 
-    db.collection("post").add({
-      message: inputRef.current.value,
-      name: session.user.name,
-      email: session.user.email,
-      image: session.user.image,
-      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-    });
+    db.collection("posts")
+      .add({
+        message: inputRef.current.value,
+        name: session.user.name,
+        email: session.user.email,
+        image: session.user.image,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      })
+      .then((doc) => {
+        if (imageToPost) {
+          const uploadTask = storage
+            .ref(`posts/${doc.id}`)
+            .putString(imageToPost, "data_url");
+
+          removeImage();
+
+          uploadTask.on(
+            "state_changed",
+            null,
+            (error) => {
+              // ERROR function
+              console.log(error);
+            },
+            () => {
+              // COMPLETE function
+              storage
+                .ref("posts")
+                .child(doc.id)
+                .getDownloadURL()
+                .then((url) => {
+                  db.collection("posts").doc(doc.id).set(
+                    {
+                      postImage: url,
+                    },
+                    { merge: true }
+                  );
+                });
+            }
+          );
+        }
+      });
+
     inputRef.current.value = "";
   };
   const addImageToPost = (e) => {
