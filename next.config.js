@@ -2,7 +2,10 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+
   images: {
+    unoptimized: true,
+
     domains: [
       "links.papareact.com",
       "platform-lookaside.fbbx.com",
