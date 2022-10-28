@@ -1,12 +1,9 @@
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import React, { useRef, useState } from "react";
-import { EmojHappyIcon } from "@heroicons/react/outline";
-import {
-  CameraIcon,
-  EmojiHappyIcon,
-  VideoCameraIcon,
-} from "@heroicons/react/solid";
+
+import { EmojiHappyIcon } from "@heroicons/react/outline";
+import { CameraIcon, VideoCameraIcon } from "@heroicons/react/solid";
 import firebase from "firebase";
 import { db, storage } from "../firebase";
 

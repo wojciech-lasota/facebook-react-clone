@@ -4,6 +4,7 @@ import Feed from "../components/Feed";
 import Header from "../components/Header";
 import Login from "../components/Login";
 import Sidebar from "../components/Sidebar";
+import Widgets from "../components/Widgets";
 
 export default function Home(props) {
   const { data: session, status } = useSession();
@@ -23,6 +24,7 @@ export default function Home(props) {
         {/* Feed */}
         <Feed />
         {/* Widgets */}
+        <Widgets />
       </main>
     </div>
   );

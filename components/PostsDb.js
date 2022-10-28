@@ -21,7 +21,8 @@ function Posts() {
               postImage={post.data().postImage}
             />
           ))
-        : posts.map((post) => (
+        : ""}
+      {/* posts.map((post) => (
             <Post
               key={post.id}
               name={post.name}
@@ -31,7 +32,7 @@ function Posts() {
               image={post.image}
               postImage={post.postImage}
             />
-          ))}
+          )) */}
     </div>
   );
 }
